@@ -15,7 +15,7 @@ function doPEMDAS(expr) {
   
   if (tokens.length === 0) return 0;
   if (tokens.length === 1) return parseFloat(tokens[0]);
-
+  
   let i = 1;
   while (i < tokens.length) {
     if (tokens[i] === '*' || tokens[i] === '/') {
@@ -35,7 +35,7 @@ function doPEMDAS(expr) {
       i += 2;
     }
   }
-  
+
   i = 1;
   while (i < tokens.length) {
     if (tokens[i] === '+' || tokens[i] === '-') {
@@ -96,7 +96,13 @@ export function formatResult(num) {
   
   if (num % 1 === 0) {
     return num.toString();
-  } else {
-    return parseFloat(num.toFixed(8)).toString();
   }
+  
+  let result = parseFloat(num.toFixed(8)).toString();
+  
+  if (result.includes('.')) {
+    result = result.replace(/\.?0+$/, '');
+  }
+  
+  return result;
 }

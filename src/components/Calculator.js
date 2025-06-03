@@ -52,7 +52,6 @@ const Calculator = () => {
 
       let lastChar = input.slice(-1);
       
-      // for operator ni sya
       if (isOperatorChar(lastChar)) {
         return input.slice(0, -1) + op;
       } else {
@@ -68,7 +67,7 @@ const Calculator = () => {
       let result = solveExpression(currentInput);
       
       if (result !== null && !isNaN(result) && isFinite(result)) {
-        setCurrentInput(result.toString());
+        setCurrentInput(formatResult(result));
         setWasCalculated(true);
       } else {
         throw new Error('Bad calculation');
